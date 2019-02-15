@@ -14,16 +14,14 @@
         <tr>
           <td>
             <!-- Bot message types / Speech -->
-
             <div v-if="a.result.fulfillment.speech" class="bubble bot">
               {{a.result.fulfillment.speech}}
-            </div>
-            <!-- Google Assistant output -->
-            <div v-for="r in a.result.fulfillment.messages" :key='r'>
             </div>
           </td>
         </tr>
       </table>
+    <br>
+    <a id="bottom"></a>
   </main>
 </template>
 <script>
@@ -37,6 +35,15 @@ export default {
       answers: [],
       query: '',
       config
+    }
+  },
+  watch: {
+    answers: function (val) {
+      setTimeout(() => {
+        document.querySelector('#bottom').scrollIntoView({
+          behavior: 'smooth'
+        })
+      }, 2) // if new answers arrive, wait for render and then smoothly scroll down to #bottom selector, used as anchor
     }
   },
   methods: {
